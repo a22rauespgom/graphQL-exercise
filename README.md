@@ -7,7 +7,7 @@
 - [Configuración del Proyecto](#configuración-del-proyecto)
   - [Backend (Node.js)](#backend-nodejs)
   - [Frontend (Vue.js)](#frontend-vuejs)
-- [GraphQL + ApolloQL](#graphql--apolloql)
+- [GraphQL + ApolloQL (Entorno servidor)](#graphql--apolloql-entorno-servidor)
   - [Definición del Schema](#definición-del-schema)
   - [Definición de los resolvers](#definición-de-los-resolvers)
   - [Consultas básicas](#consultas-básicas)
