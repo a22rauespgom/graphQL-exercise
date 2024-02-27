@@ -1,6 +1,20 @@
 # Ejercicio GraphQL + ApolloQL
 
-Breve descripción del proyecto.
+##Tabla de contenidos
+# Ejercicio GraphQL + ApolloQL
+
+## Tabla de contenidos
+1. Requisitos
+2. Configuración del Proyecto
+   2.1 Backend (Node.js)
+# Ejercicio GraphQL + ApolloQL
+
+## Tabla de contenidos
+
+- [Requisitos](#requisitos)
+- [Configuración del Proyecto](#configuración-del-proyecto)
+  - [Backend (Node.js)](#backend-nodejs)
+  - [Frontend (Vue.js)](#frontend-vuejs)
 
 ## Requisitos
 
