@@ -89,6 +89,49 @@ En nuestro esquema, definimos tipos de datos como Book y Author, así como consu
 
 ### Definición de los resolvers
 
+```javascript
+const resolvers = {
+  Query: {
+    // Resolver para el campo 'books' en la consulta Query
+    books: () => books, // Retorna todos los libros
+    // Resolver para el campo 'book' en la consulta Query
+    book: (_, { id }) => books.find(book => book.id === id), // Retorna un libro por su ID
+    // Resolver para el campo 'authors' en la consulta Query
+    authors: () => authors // Retorna todos los autores
+  },
+  Book: {
+    // Resolver para el campo 'author' en el tipo Book
+    author: (parent) => { // 'parent' representa el objeto Book que contiene el campo 'authorId'
+      const author = authors.find(author => author.id === parent.authorId);
+      if (!author) {
+        throw new Error("El autor del libro no pudo ser encontrado");
+      }
+      return author;
+    }
+  },
+  Mutation: {
+    // Resolver para el campo 'addBook' en la mutación Mutation
+    addBook: (parent, { title, authorId }, context) => {
+      const author = authors.find(author => author.id === authorId);
+      if (!author) {
+        throw new Error("El autor del libro no pudo ser encontrado");
+      }
+
+      const newBook = {
+        id,
+        title,
+        authorId,
+      };
+
+      books.push(newBook); // Agrega el nuevo libro al arreglo 'books'
+
+      return newBook; // Retorna el nuevo libro agregado
+    },
+  },
+};
+```
+
+
 ### Consultas básicas
 
 ```javascript
