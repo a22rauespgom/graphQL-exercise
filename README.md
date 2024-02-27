@@ -5,13 +5,16 @@
 
 - [Requisitos](#requisitos)
 - [Configuración del Proyecto](#configuración-del-proyecto)
-    - [Backend (Node.js)](#backend-nodejs)
-    - [Frontend (Vue.js)](#frontend-vuejs)
+  - [Backend (Node.js)](#backend-nodejs)
+  - [Frontend (Vue.js)](#frontend-vuejs)
 - [GraphQL + ApolloQL](#graphql--apolloql)
-    - [Definición del Schema](#definición-del-schema)
-    - [Definición de los resolvers](#definición-de-los-resolvers)
-    - [Consultas básicas](#consultas-básicas)
-    - [Mutaciones](#mutaciones)
+  - [Definición del Schema](#definición-del-schema)
+  - [Definición de los resolvers](#definición-de-los-resolvers)
+  - [Consultas básicas](#consultas-básicas)
+  - [Mutaciones](#mutaciones)
+- [GraphQL + ApolloQL (Entorno cliente)](#graphql--apolloql-entorno-cliente)
+  - [Consultas GraphQL con Apollo Client](#consultas-graphql-con-apollo-client)
+  - [Mutaciones en Apollo Client](#mutaciones-en-apollo-client)
 
 ## Requisitos
 
