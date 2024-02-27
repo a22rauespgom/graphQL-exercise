@@ -50,3 +50,17 @@
     ```bash
     npm run dev
     ```
+
+## Explicación archivos
+
+### Schema.js
+El archivo schema.js define el esquema de una API GraphQL. Este esquema especifica qué tipos de datos están disponibles y qué operaciones se pueden realizar en la API.
+
+```javascript
+type Query {
+    books: [Book]
+    book(id: ID!): Book
+    authors: [Author] 
+}
+```
+
