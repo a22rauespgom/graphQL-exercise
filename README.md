@@ -11,6 +11,7 @@
     - [Definición del Schema](#definición-del-schema)
     - [Definición de los resolvers](#definición-de-los-resolvers)
     - [Consultas básicas](#consultas-básicas)
+    - [Mutaciones](#mutaciones)
 
 ## Requisitos
 
