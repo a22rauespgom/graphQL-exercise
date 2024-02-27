@@ -1,4 +1,4 @@
-# Nombre del Proyecto
+# Ejercicio GraphQL + ApolloQL
 
 Breve descripción del proyecto.
 
@@ -24,10 +24,8 @@ Breve descripción del proyecto.
 4. Inicia el servidor:
 
     ```bash
-    npm start
+    npm run dev
     ```
-
-El servidor estará disponible en `http://localhost:3000`.
 
 ### Frontend (Vue.js)
 
@@ -44,5 +42,5 @@ El servidor estará disponible en `http://localhost:3000`.
 4. Inicia la aplicación en modo de desarrollo:
 
     ```bash
-    npm run serve
+    npm run dev
     ```
