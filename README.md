@@ -123,8 +123,6 @@ const resolvers = {
         authorId,
       };
 
-      books.push(newBook); // Agrega el nuevo libro al arreglo 'books'
-
       return newBook; // Retorna el nuevo libro agregado
     },
   },
