@@ -5,13 +5,16 @@
 
 - [Requisitos](#requisitos)
 - [Configuración del Proyecto](#configuración-del-proyecto)
-    - [Backend (Node.js)](#backend-nodejs)
-    - [Frontend (Vue.js)](#frontend-vuejs)
-- [GraphQL + ApolloQL](#graphql--apolloql)
-    - [Definición del Schema](#definición-del-schema)
-    - [Definición de los resolvers](#definición-de-los-resolvers)
-    - [Consultas básicas](#consultas-básicas)
-    - [Mutaciones](#mutaciones)
+  - [Backend (Node.js)](#backend-nodejs)
+  - [Frontend (Vue.js)](#frontend-vuejs)
+- [GraphQL + ApolloQL (Entorno servidor)](#graphql--apolloql-entorno-servidor)
+  - [Definición del Schema](#definición-del-schema)
+  - [Definición de los resolvers](#definición-de-los-resolvers)
+  - [Consultas básicas](#consultas-básicas)
+  - [Mutaciones](#mutaciones)
+- [GraphQL + ApolloQL (Entorno cliente)](#graphql--apolloql-entorno-cliente)
+  - [Consultas GraphQL con Apollo Client](#consultas-graphql-con-apollo-client)
+  - [Mutaciones en Apollo Client](#mutaciones-en-apollo-client)
 
 ## Requisitos
 
@@ -56,7 +59,7 @@
     npm run dev
     ```
 
-## GraphQL + ApolloQL
+## GraphQL + ApolloQL (Entorno servidor)
 
 ### Definición del Schema
 
@@ -170,3 +173,105 @@ mutation {
 }
 ```
 
+## GraphQL + ApolloQL (Entorno cliente)
+
+### Consultas GraphQL con Apollo Client
+
+En una aplicación Vue.js con Apollo Client, es común definir consultas GraphQL para recuperar datos del servidor GraphQL. En el código, encontrarás un objeto `apollo` que contiene estas definiciones.
+
+Definiendo gql en el componente de vue.
+```javascript
+import { gql } from 'graphql-tag'
+```
+
+#### Estructura del Objeto `apollo`
+
+El objeto `apollo` tiene la siguiente estructura:
+
+```javascript
+    data() {
+        return {
+            books: [],
+            authors: []
+        }
+    },
+    apollo: {
+        books: {
+            query: gql`
+                query {
+                    books {
+                        id
+                        title
+                        author {
+                            id
+                            name
+                        }
+                    }
+                }
+            `
+        },
+        authors: {
+            query: gql`
+                query {
+                    authors {
+                        id
+                        name
+                    }
+                }
+            `
+        }
+    }
+```
+
+### Mutaciones en Apollo Client
+
+En una aplicación Vue.js con Apollo Client, las mutaciones GraphQL se utilizan para realizar cambios en los datos del servidor. A continuación, se muestra un ejemplo de cómo agregar un libro utilizando una mutación GraphQL.
+
+```javascript
+    const ADD_BOOK_MUTATION = gql`
+        mutation AddBook($title: String!, $authorId: ID!) {
+            addBook(title: $title, authorId: $authorId) {
+                id
+                title
+                author {
+                    id
+                    name
+                }
+            }
+        }
+    `;
+    try {
+        const response = await this.$apollo.mutate({
+            mutation: ADD_BOOK_MUTATION,
+            variables: {
+                title: this.newBook.title,
+                authorId: this.newBook.author
+            }
+        });
+        console.log('Book added:', response.data.addBook);
+        // Esta línea de código se utiliza para desencadenar una nueva consulta ("refetch") de la consulta "books" utilizando Apollo Client.
+        await this.$apollo.queries.books.refetch();
+    } catch (error) {
+        console.error('Error adding book:', error);
+    }
+
+```
+#### Descripción del Proceso:
+
+1. **Definición de la Mutación:**
+   Se define la mutación utilizando `gql` de Apollo Client. En este caso, la mutación `AddBook` toma dos argumentos: `title` y `authorId`.
+
+2. **Ejecución de la Mutación:**
+   Se utiliza `this.$apollo.mutate()` para ejecutar la mutación. Se proporciona la mutación `ADD_BOOK_MUTATION` y se pasan las variables necesarias (`title` y `authorId`).
+
+3. **Manejo de la Respuesta:**
+   Después de agregar el libro con éxito, se imprime el libro agregado en la consola para confirmación.
+
+4. **Actualización de la Interfaz de Usuario:**
+   Se reinician los valores del formulario `newBook.title` y `newBook.author` para prepararlos para la próxima entrada.
+
+5. **Actualización de la Lista de Libros:**
+   Se refresca la consulta `books` para actualizar la lista de libros con el nuevo libro agregado.
+
+6. **Manejo de Errores:**
+   Se manejan los errores que puedan ocurrir durante la mutación para proporcionar una experiencia de usuario más robusta y amigable.
