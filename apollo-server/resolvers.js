@@ -20,7 +20,7 @@ const resolvers = {
     Query: {
         books: () => books,
         book: (_, { id }) => books.find(book => book.id === id),
-        authors: () => authors // Resolver para la consulta authors
+        authors: () => authors
     },
     Book: {
         author: (parent) => {
@@ -45,6 +45,7 @@ const resolvers = {
             };
 
             books.push(newBook);
+            storeData();
 
             return newBook;
         },
@@ -59,10 +60,19 @@ const resolvers = {
     },
 };
 
+function storeData() {
+    const data = {
+        books,
+        authors
+    };
+    fs.writeFileSync('./libros.json', JSON.stringify(data, null, 2), 'utf-8');
+
+}
+
 function generateUniqueId() {
     return String(books.length + 1);
 }
 
-fetchData(); // Llama a la función para cargar los datos del JSON al iniciar la aplicación
+fetchData();
 
 export default resolvers;

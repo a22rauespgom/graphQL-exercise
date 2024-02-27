@@ -1,5 +1,5 @@
 {
-  "name": "graphql-exercise",
+  "name": "vue",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,6 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.9.5",
+    "@vue/apollo-composable": "^4.0.1",
+    "@vue/apollo-option": "^4.0.0",
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6",
     "pinia": "^2.1.7",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
