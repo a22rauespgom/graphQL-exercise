@@ -45,66 +45,18 @@ export default {
     },
     apollo: {
         movies: {
-            query: gql`
-                query {
-                    movies {
-                        id
-                        title
-                        year
-                        director {
-                            id
-                            name
-                        }
-                    }
-                }
-            `
+
         },
         directors: {
-            query: gql`
-                query {
-                    directors {
-                        id
-                        name
-                    }
-                }
-            `
+
         }
 
     },
     methods: {
         async addMovie() {
-            const ADD_MOVIE_MUTATION = gql`
-                mutation AddMovie($title: String!, $year: Int!, $directorId: ID!) {
-                    addMovie(title: $title, year: $year, directorId: $directorId) {
-                        id
-                        title
-                        year
-                        director {
-                            id
-                            name
-                        }
-                    }
-                }
-            `;
-            try {
-                const response = await this.$apollo.mutate({
-                    mutation: ADD_MOVIE_MUTATION,
-                    variables: {
-                        title: this.newMovie.title,
-                        year: this.newMovie.year,
-                        directorId: this.newMovie.director
-                    }
-                });
-                console.log('Movie added:', response.data.addMovie);
-                this.newMovie.title = '';
-                this.newMovie.year = null;
-                this.newMovie.director = '';
-                await this.$apollo.queries.movies.refetch();
-            } catch (error) {
-                console.error('Error adding movie:', error);
-            }
+
         },
-    }
+    },
 }
 </script>
 
