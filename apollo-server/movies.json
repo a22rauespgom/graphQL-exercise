@@ -1,0 +1,184 @@
+{
+    "movies": [
+        {
+            "id": "1",
+            "title": "Inception",
+            "year": 2010,
+            "directorId": "1"
+        },
+        {
+            "id": "2",
+            "title": "The Shawshank Redemption",
+            "year": 1994,
+            "directorId": "2"
+        },
+        {
+            "id": "3",
+            "title": "The Godfather",
+            "year": 1972,
+            "directorId": "3"
+        },
+        {
+            "id": "4",
+            "title": "Pulp Fiction",
+            "year": 1994,
+            "directorId": "4"
+        },
+        {
+            "id": "5",
+            "title": "The Dark Knight",
+            "year": 2008,
+            "directorId": "5"
+        },
+        {
+            "id": "6",
+            "title": "Fight Club",
+            "year": 1999,
+            "directorId": "6"
+        },
+        {
+            "id": "7",
+            "title": "Forrest Gump",
+            "year": 1994,
+            "directorId": "7"
+        },
+        {
+            "id": "8",
+            "title": "The Matrix",
+            "year": 1999,
+            "directorId": "8"
+        },
+        {
+            "id": "9",
+            "title": "Schindler's List",
+            "year": 1993,
+            "directorId": "9"
+        },
+        {
+            "id": "10",
+            "title": "Goodfellas",
+            "year": 1990,
+            "directorId": "10"
+        },
+        {
+            "id": "11",
+            "title": "The Silence of the Lambs",
+            "year": 1991,
+            "directorId": "11"
+        },
+        {
+            "id": "12",
+            "title": "The Lord of the Rings: The Fellowship of the Ring",
+            "year": 2001,
+            "directorId": "12"
+        },
+        {
+            "id": "13",
+            "title": "The Lord of the Rings: The Two Towers",
+            "year": 2002,
+            "directorId": "12"
+        },
+        {
+            "id": "14",
+            "title": "The Lord of the Rings: The Return of the King",
+            "year": 2003,
+            "directorId": "12"
+        },
+        {
+            "id": "15",
+            "title": "Forrest Gump",
+            "year": 1994,
+            "directorId": "7"
+        },
+        {
+            "id": "16",
+            "title": "The Green Mile",
+            "year": 1999,
+            "directorId": "2"
+        },
+        {
+            "id": "17",
+            "title": "Interstellar",
+            "year": 2014,
+            "directorId": "1"
+        },
+        {
+            "id": "18",
+            "title": "The Departed",
+            "year": 2006,
+            "directorId": "10"
+        },
+        {
+            "id": "19",
+            "title": "Gladiator",
+            "year": 2000,
+            "directorId": "13"
+        },
+        {
+            "id": "20",
+            "title": "The Prestige",
+            "year": 2006,
+            "directorId": "1"
+        },
+        {
+            "id": "21",
+            "title": "The Godfather: Part II",
+            "year": 1974,
+            "directorId": "3"
+        }
+    ],
+    "directors": [
+        {
+            "id": "1",
+            "name": "Christopher Nolan"
+        },
+        {
+            "id": "2",
+            "name": "Frank Darabont"
+        },
+        {
+            "id": "3",
+            "name": "Francis Ford Coppola"
+        },
+        {
+            "id": "4",
+            "name": "Quentin Tarantino"
+        },
+        {
+            "id": "5",
+            "name": "Christopher Nolan"
+        },
+        {
+            "id": "6",
+            "name": "David Fincher"
+        },
+        {
+            "id": "7",
+            "name": "Robert Zemeckis"
+        },
+        {
+            "id": "8",
+            "name": "Lana Wachowski, Lilly Wachowski"
+        },
+        {
+            "id": "9",
+            "name": "Steven Spielberg"
+        },
+        {
+            "id": "10",
+            "name": "Martin Scorsese"
+        },
+        {
+            "id": "11",
+            "name": "Jonathan Demme"
+        },
+        {
+            "id": "12",
+            "name": "Peter Jackson"
+        },
+        {
+            "id": "13",
+            "name": "Ridley Scott"
+        }
+    ]
+}

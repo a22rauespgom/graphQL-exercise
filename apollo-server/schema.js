@@ -1,25 +1,25 @@
-// schema.js
 import { gql } from 'apollo-server';
 
 const typeDefs = gql`
   type Query {
-    books: [Book]
-    book(id: ID!): Book
-    authors: [Author] 
+    movies: [Movie]
+    movie(id: ID!): Movie
+    directors: [Director] 
   }
 
   type Mutation {
-    addBook(title: String!, authorId: ID!): Book
-    addAuthor(name: String!): Author
+    addMovie(title: String!, year: Int!, directorId: ID!): Movie
+    addDirector(name: String!): Director
   }
 
-  type Book {
+  type Movie {
     id: ID!
     title: String!
-    author: Author!
+    year: Int!
+    director: Director!
   }
 
-  type Author {
+  type Director {
     id: ID!
     name: String!
   }

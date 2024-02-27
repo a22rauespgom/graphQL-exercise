@@ -1,15 +1,15 @@
 import fs from 'fs';
 
-const books = [];
-const authors = [];
+const movies = [];
+const directors = [];
 
 const fetchData = () => {
     try {
-        const jsonData = fs.readFileSync('./libros.json', 'utf-8');
+        const jsonData = fs.readFileSync('./movies.json', 'utf-8');
         const data = JSON.parse(jsonData);
 
-        books.push(...data.books);
-        authors.push(...data.authors);
+        movies.push(...data.movies);
+        directors.push(...data.directors);
     } catch (error) {
         console.error('Error fetching JSON data:', error);
     }
@@ -18,59 +18,60 @@ const fetchData = () => {
 
 const resolvers = {
     Query: {
-        books: () => books,
-        book: (_, { id }) => books.find(book => book.id === id),
-        authors: () => authors
+        movies: () => movies,
+        movie: (_, { id }) => movies.find(movie => movie.id === id),
+        directors: () => directors
     },
-    Book: {
-        author: (parent) => {
-            const author = authors.find(author => author.id === parent.authorId);
-            if (!author) {
-                throw new Error("El autor del libro no pudo ser encontrado");
+    Movie: {
+        director: (parent) => {
+            const director = directors.find(director => director.id === parent.directorId);
+            if (!director) {
+                throw new Error("El director de la película no pudo ser encontrado");
             }
-            return author;
+            return director;
         }
     },
     Mutation: {
-        addBook: (parent, { title, authorId }, context) => {
-            const author = authors.find(author => author.id === authorId);
-            if (!author) {
-                throw new Error("El autor del libro no pudo ser encontrado");
+        addMovie: (parent, { title, year, directorId }, context) => {
+            const director = directors.find(director => director.id === directorId);
+            if (!director) {
+                throw new Error("El director de la película no pudo ser encontrado");
             }
 
-            const newBook = {
-                id: generateUniqueId(),
+            const newMovie = {
+                id: generateUniqueId(), // Suponiendo que tienes una función para generar IDs únicos
                 title,
-                authorId,
+                year,
+                directorId,
             };
 
-            books.push(newBook);
-            storeData();
+            movies.push(newMovie);
+            storeData(); // Suponiendo que tienes una función para almacenar los datos en algún lugar
 
-            return newBook;
+            return newMovie;
         },
-        addAuthor: (_, { name }) => {
-            const newAuthor = {
-                id: String(authors.length + 1),
+        addDirector: (_, { name }) => {
+            const newDirector = {
+                id: String(directors.length + 1),
                 name,
             };
-            authors.push(newAuthor);
-            return newAuthor;
+            directors.push(newDirector);
+            return newDirector;
         },
     },
 };
 
+
 function storeData() {
     const data = {
-        books,
-        authors
+        movies,
+        directors,
     };
-    fs.writeFileSync('./libros.json', JSON.stringify(data, null, 2), 'utf-8');
-
+    fs.writeFileSync('./movies.json', JSON.stringify(data, null, 2), 'utf-8');
 }
 
 function generateUniqueId() {
-    return String(books.length + 1);
+    return String(movies.length + 1);
 }
 
 fetchData();

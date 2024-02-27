@@ -1,23 +1,25 @@
 <template>
     <div class="container">
         <div class="left-panel">
-            <h1>Listado de Libros</h1>
-            <ul class="book-list">
-                <li v-for="book in books" :key="book.id" class="book-item">
-                    {{ book.title }} - <b>{{ book.author.name }}</b>
+            <h1>Listado de Películas</h1>
+            <ul class="movie-list">
+                <li v-for="movie in movies" :key="movie.id" class="movie-item">
+                    {{ movie.title }} - <b>{{ movie.director.name }}</b> ({{ movie.year }})
                 </li>
             </ul>
         </div>
         <div class="right-panel">
-            <h1>Añadir Libro</h1>
-            <form @submit.prevent="addBook">
+            <h1>Añadir Película</h1>
+            <form @submit.prevent="addMovie">
                 <label for="title">Título:</label>
-                <input type="text" id="title" v-model="newBook.title" required>
-                <label for="author">Autor:</label>
-                <select id="author" v-model="newBook.author" required>
-                    <option disabled value="">Seleccione autor</option>
-                    <option v-for="author in authors" :value="author.id" :key="author.id">
-                        {{ author.name }}
+                <input type="text" id="title" v-model="newMovie.title" required>
+                <label for="year">Año:</label>
+                <input type="number" id="year" v-model="newMovie.year" required>
+                <label for="director">Director:</label>
+                <select id="director" v-model="newMovie.director" required>
+                    <option disabled value="">Seleccione director</option>
+                    <option v-for="director in directors" :value="director.id" :key="director.id">
+                        {{ director.name }}
                     </option>
                 </select>
                 <button>Añadir</button>
@@ -32,22 +34,24 @@ import { gql } from 'graphql-tag'
 export default {
     data() {
         return {
-            books: [],
-            newBook: {
+            movies: [],
+            newMovie: {
                 title: '',
-                author: ''
+                year: null,
+                director: ''
             },
-            authors: []
+            directors: []
         }
     },
     apollo: {
-        books: {
+        movies: {
             query: gql`
                 query {
-                    books {
+                    movies {
                         id
                         title
-                        author {
+                        year
+                        director {
                             id
                             name
                         }
@@ -55,10 +59,10 @@ export default {
                 }
             `
         },
-        authors: {
+        directors: {
             query: gql`
                 query {
-                    authors {
+                    directors {
                         id
                         name
                     }
@@ -68,13 +72,14 @@ export default {
 
     },
     methods: {
-        async addBook() {
-            const ADD_BOOK_MUTATION = gql`
-                mutation AddBook($title: String!, $authorId: ID!) {
-                    addBook(title: $title, authorId: $authorId) {
+        async addMovie() {
+            const ADD_MOVIE_MUTATION = gql`
+                mutation AddMovie($title: String!, $year: Int!, $directorId: ID!) {
+                    addMovie(title: $title, year: $year, directorId: $directorId) {
                         id
                         title
-                        author {
+                        year
+                        director {
                             id
                             name
                         }
@@ -83,18 +88,20 @@ export default {
             `;
             try {
                 const response = await this.$apollo.mutate({
-                    mutation: ADD_BOOK_MUTATION,
+                    mutation: ADD_MOVIE_MUTATION,
                     variables: {
-                        title: this.newBook.title,
-                        authorId: this.newBook.author
+                        title: this.newMovie.title,
+                        year: this.newMovie.year,
+                        directorId: this.newMovie.director
                     }
                 });
-                console.log('Book added:', response.data.addBook);
-                this.newBook.title = '';
-                this.newBook.author = '';
-                await this.$apollo.queries.books.refetch();
+                console.log('Movie added:', response.data.addMovie);
+                this.newMovie.title = '';
+                this.newMovie.year = null;
+                this.newMovie.director = '';
+                await this.$apollo.queries.movies.refetch();
             } catch (error) {
-                console.error('Error adding book:', error);
+                console.error('Error adding movie:', error);
             }
         },
     }
