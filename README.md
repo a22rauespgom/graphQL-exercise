@@ -25,7 +25,7 @@
 
 ### Backend (Node.js)
 
-1. Ve a la carpeta `Back`.
+1. Ve a la carpeta `apollo-server`.
 
 2. Instala las dependencias utilizando npm:
 
